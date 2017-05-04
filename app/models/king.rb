@@ -1,0 +1,2 @@
+class King < User
+end

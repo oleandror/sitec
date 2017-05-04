@@ -1,0 +1,23 @@
+<% if user_signed_in? %>
+  Signed in as <%= current_user.email %>. Not you?
+  <%= link_to "Edit profile", edit_user_registration_path %>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+  <% if current_user.type == "King" %>
+	  <%= link_to "Administradores", admins_path %>
+	  <% end %>
+
+	  <% if current_user.type == "Admin" %>
+	  <%= link_to "Suscritos", members_path %>
+  <% end %>
+
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+<% end %>
+
+
+
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, id: "flash_#{name}" %>
+<% end %>

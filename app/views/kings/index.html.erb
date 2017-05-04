@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Kings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @kings.each do |king| %>
+      <tr>
+        <td><%= link_to 'Show', king %></td>
+        <td><%= link_to 'Edit', edit_king_path(king) %></td>
+        <td><%= link_to 'Destroy', king, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New King', new_king_path %>
