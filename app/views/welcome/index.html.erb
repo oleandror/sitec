@@ -1,29 +1,4 @@
 
-
-<% if user_signed_in? %>
-  Signed in as <%= current_user.type %>. Not you?
-  <%= link_to "Editar Perfil", edit_user_registration_path %>
-  <%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %>
-
-  <% if current_user.type == "King" %>
-	  <%= link_to "Administradores", admins_path %>
-	  <% end %>
-
-	  <% if current_user.type == "Admin" %>
-	  <%= link_to "Suscritos", members_path %>
-  <% end %>
-
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-<% end %>
-
-
-
-
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, id: "flash_#{name}" %>
-<% end %>
-
 <!DOCTYPE html>
 <html lang="es-ES" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
 
@@ -44,416 +19,61 @@
     
   </head>
 
+</html>
+<% if user_signed_in? %>
+  <!--Signed in as <%= current_user.type %>. Not you?
+  <%= link_to "Editar Perfil", edit_user_registration_path %>
+  <%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %> 
 
-<% if user_signed_in? && current_user.try(:role_id) == 1 %>
-  <h1>Bienvenido <%= current_user.try(:role_id)%> <%= current_user.try(:last_name)%></h1>
+  <% if current_user.type == "King" %>
+	  <%= link_to "Administradores", admins_path %> -->
+	  
+   <h1>Bienvenido <%= current_user.try(:name)%> <%= current_user.try(:last_name)%></h1>
   <ul class="nav nav-tabs">
 
   
   <li><a href="#">INICIO</a></li>
   <li><a href="#">NOTICIAS</a></li>
   <li><a href="#">CONTACTO</a></li>
- <li>  <%= link_to "USUARIOS ADMINISTRADORES", href= "/admin/users", :class => 'navbar-link'  %>
+ <li>  <%= link_to "USUARIOS ADMINISTRADORES", admins_path, :class => 'navbar-link'  %>
    </li> 
   <li><%= link_to "EDITAR CUENTA", edit_user_registration_path, :class => 'navbar-link'  %> </li>
   
   <li>  <%= link_to "CERRAR SESION", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
    </li>
    
-</ul>
-   
+</ul> 
+<% end %>
 
 
-
-
-  <!-- HEAD del documento HTML-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Componentes - Encabezados y elementos de navegación</title>
- 
-    <!-- CSS de Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <!-- Librería jQuery requerida por los plugins de JavaScript -->
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <!-- Todos los plugins JavaScript de Bootstrap (también puedes incluir archivos JavaScript individuales de los únicos plugins que utilices) -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Referencia a un archivo css propio, donde se realizan las modificaciones css de la página principal -->
-    <link href="css/starter-template.css" rel="stylesheet">
-    <!-- Nueva librería de jQuery personalizada para interactuar con los elementos de nuestro documento -->
-    <!--<script src="js/jquery-example.js"></script>-->
-    <!-- Referencia a otro archivo css propio, donde se realizan las modificaciones css de los componentes y elementos -->
-    <link href="css/personalizado.css" rel="stylesheet">
-    <!-- jquery -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-          //Código jquery para realizar alguna acción
-        });
-    </script>
-  </head>
-  <!-- FIN del HEAD del documento HTML-->
-  <!-- Body del documento HTML -->
-  <body>
-    <!-- Se configura el menú superior-->
-  
-    </nav>
-    <!-- INICIO DEL CONTAINER DE LA WEB PRINCIPAL-->
-    <div class="container">
-        <div class="starter-template">
-
-
-            <h1>PARQUE DEL CAFE</h1>
-
-          <div class="media">
-            <a class="pull-left" href="#">
-              <%= image_tag "parquecafe.jpg", :alt => "parquecafe", :title => "parquecafe"%>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">PARQUE DEL CAFE</h4>
-              <p> El Parque Nacional del Café, fue fundado por la Federación Nacional de Cafeteros de Colombia y el Comité Departamental de Cafeteros del Quindío, pertenece a la Fundación Parque de la Cultura Cafetera y es una entidad sin ánimo de lucro destinada a la preservación del patrimonio cultural e histórico del café en Colombia, a la promoción de actividades culturalesQU, recreativas, ecológicas y al impulso del eco-turismo en la región.
-
-                Ubicado en la zona central cafetera de Colombia, en el centro occidente del país, con una temperatura promedio de 21º y más de 25 atracciones tanto mecánicas como culturales, El Parque Nacional del Café es un recorrido por la cultura y las costumbres de una tradición que se extiende sobre el territorio del departamento del Quindío; marco de un destino turístico que ofrece a los visitantes un espacio de sano esparcimiento. 
-                Por esta razon este lugar es uno de nuestros 10 Mejores Destínos Turísticos del Eje Cafetero </p>
-            </div>
-          </div>
-
-
-          <h1>PARQUE NATURAL LOS NEVADOS</h1>
-
-          <div class="media">
-            <a class="pull-left" href="#">
-              <%= image_tag "nevado.jpg", :alt => "parquecafe", :title => "parquecafe"%>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">PARQUE NATURAL LOS NEVADOS</h4>
-              <p> El Parque Nacional Natural Los Nevados se encuentra ubicado en la Cordillera Central en la Región Andina de los Andes en Colombia.
-
-                El parque comprende los pisos térmicos correspondientes a los de frío, páramo, superpáramo y nieves, por lo cual sus ecosistemas principales son los bosques andinos, páramos y glaciar. Incluye además las cuencas hidrográficas de algunos ríos.
-                </p>
-            </div>
-          </div>
-
-          <h1>TERMALES DE SANTA ROSA</h1>
-
-          <div class="media">
-            <a class="pull-left" href="#">
-              <%= image_tag "termales.jpg", :alt => "parquecafe", :title => "parquecafe"%>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">TERMALES DE SANTA ROSA</h4>
-              <p> Uno de los principales referentes de Risaralda son las aguas termales de Santa Rosa de Cabal. El agua medicinal que brota de la tierra y se funde con la pura y fresca que baja de las montañas, a más de 100 metros de altura, y se ramifica en pequeñas cascadas y duchas naturales, ofrecen un espectáculo sin precedentes.
-
-              Está ubicado a 17,8 kilómetros de Santa Rosa de Cabal, Risaralda, Colombia, de los cuales 12.8 km son de carretera rural no pavimentada de buenas especificaciones para el acceso de vehículos familiares y de grupos.
-                </p>
-            </div>
-          </div>
-
-<head>
-  <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="pingback" href="" />
-<meta name="robots" content="noodp"/>
-<meta property="og:locale" content="es_ES" />
-<meta property="og:type" content="article" />
-<meta property="article:section" content="Blog" />
-<meta property="article:published_time" content="2014-04-08T18:14:27-05:00" />
-<meta property="article:modified_time" content="2016-12-21T12:13:20-05:00" />
-<meta property="og:updated_time" content="2016-12-21T12:13:20-05:00" />
-<meta property="fb:app_id" content="392849597719636" />
-<meta property="og:image:width" content="700" />
-<meta property="og:image:height" content="403" />
-
-</style>
-
-<meta name="generator" content="Powered by Slider Revolution 5.2.5.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
-</head>
-<body id="home" class="post-template-default single single-post postid-616 single-format-standard  nicescroll">
-     
-        <div class="col-md-6">
-                      ©2017. Diseñado por oscar rodriguez- david lopez                 </div>
-        
-</div> <!-- body-wrapper -->
-        <script type="text/javascript">
-        // <![CDATA[
-        var disqus_shortname = 'fincasejecafetero';
-        (function () {
-            var nodes = document.getElementsByTagName('span');
-            for (var i = 0, url; i < nodes.length; i++) {
-                if (nodes[i].className.indexOf('dsq-postid') != -1 && nodes[i].parentNode.tagName == 'A') {
-                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
-                    url = nodes[i].parentNode.href.split('#', 1);
-                    if (url.length == 1) { url = url[0]; }
-                    else { url = url[1]; }
-                    nodes[i].parentNode.href = url + '#disqus_thread';
-                }
-            }
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-        // ]]>
-        </script>
-  <script type="text/javascript">
-  window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-  d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-  _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-  $.src='//v2.zopim.com/?32kpMNYwcEDP6OFTozehuMmzLMDQ947P';z.t=+new Date;$.
-  type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-  </script><script>$zopim( function() {
-})</script><!--End of Zendesk Chat Script--><style scoped>.kode-navigation{font-family:Arial, Helvetica, sans-serif}
-.kode-caption-title, .kode-caption-text, h1, h2, h3, h4, h5, h6{font-family:Arial, Helvetica, sans-serif}
-body{font-family:Arial, Helvetica, sans-serif}
-body{font-size:14px}
-h1{font-size:30px}
-h2{font-size:25px}
-h3{font-size:20px}
-h4{font-size:18px}
-h5{font-size:16px}
-h6{font-size:15px}
-.logo{margin-bottom: 0px;  }
-.logo{margin-top: 0px;  }
-.thcolor,.thcolorhover:hover,
-        .kode-services article:hover h2 a,
-        .kd-blog-list article:hover h2 a,
-        .widget-blogpost ul li:hover h6 a,
-        .kode-team article:hover h5 a,
-        .kd-404 h1,
-        .property-list .text h2{color: #92cd00 !important;  }
-
-        .nav.navbar-nav .menu .children li:hover:before, .kode-navigation-wrapper .sub-menu li:hover:before, .tagcloud a:hover, .widget_nav_menu ul li a:hover, .widget_archive ul li:hover, .widget_categories ul li:hover, .widget_pages ul li a:hover, .widget_meta ul li:hover, .widget_recent_entries ul li a:hover, .widget_calendar caption, .form-submit .submit,.thbg-color,.thbg-colorhover:hover,.kd-topbar,#lang_sel ul li ul,.nav.navbar-nav .menu ul > li > a:before, .navbar-nav > li > a:before,.sub-dropdown li:before,.kd-usernetwork:before,
-.nav-tabs > li.active > a,.nav-tabs > li > a:hover, .nav-tabs > li.active > a:focus,.input-group-addon,.kode-team figure:before,.kd-tag ul li a:hover,
-.kode-gallery ul li figure figcaption:before,.pagination a:before,.pagination a:after,/*Widget*/.widget_categories ul li:hover,.widget_archive ul li:hover,
-.widget_search form input[type="submit"],.widget_tag a:hover,.kode-widget h3:before,.kode-widget h2:before,.kd-widget-title h2:before,.nav.navbar-nav .menu .children li:before,.kode-comments-area ul li .text a.comment-reply-link:hover,
-.property-list .text a:hover,
-.f-property .thumb{background-color: #92cd00 !important;  }
-.th-bordercolor,.th-bordercolorhover:hover,blockquote,.kd-user-tag,.sub-dropdown,.property-list .text a:hover{border-color: #92cd00 !important;  }
-.kode-navigation-wrapper .children, .kode-navigation-wrapper .sub-menu{border-top-color: #92cd00 !important;  }
-</style>
-<script type='text/javascript'>
-/* <![CDATA[ */
-var _wpcf7 = {"recaptcha":{"messages":{"empty":"Por favor, prueba que no eres un robot."}}};
-/* ]]> */
-</script>
-
-
-</body>
-</html>
-  
-  <div class="row center-xs">
-    <div class="col-xs-8 col md-6*">
-      <div class="box text-left">
-      </div>
-  </div>
-</div>
-<% elsif if user_signed_in? && current_user.try(:role_id) == 2
-   %>
-  
+    <% if current_user.type == "Administradores" %>
+	  <%= link_to "Suscritos", members_path %>
+    <h1>Bienvenido <%= current_user.try(:name)%> <%= current_user.try(:last_name)%></h1>
   <ul class="nav nav-tabs">
+
   
   <li><a href="#">INICIO</a></li>
   <li><a href="#">NOTICIAS</a></li>
   <li><a href="#">CONTACTO</a></li>
-  <li><%= link_to "USUARIOS SUSCRITOS", href= "/users/ver", :class => 'navbar-link'  %> </li>
+ <li>  <%= link_to "USUARIOS SUSCRITOS", members_path, :class => 'navbar-link'  %>
+   </li> 
+  <li><%= link_to "EDITAR CUENTA", edit_user_registration_path, :class => 'navbar-link'  %> </li>
   
   <li>  <%= link_to "CERRAR SESION", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
    </li>
-</ul>
    
+  <% end %>
 
-
-
-
-  <!-- HEAD del documento HTML-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Componentes - Encabezados y elementos de navegación</title>
- 
-    <!-- CSS de Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <!-- Librería jQuery requerida por los plugins de JavaScript -->
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <!-- Todos los plugins JavaScript de Bootstrap (también puedes incluir archivos JavaScript individuales de los únicos plugins que utilices) -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Referencia a un archivo css propio, donde se realizan las modificaciones css de la página principal -->
-    <link href="css/starter-template.css" rel="stylesheet">
-    <!-- Nueva librería de jQuery personalizada para interactuar con los elementos de nuestro documento -->
-    <!--<script src="js/jquery-example.js"></script>-->
-    <!-- Referencia a otro archivo css propio, donde se realizan las modificaciones css de los componentes y elementos -->
-    <link href="css/personalizado.css" rel="stylesheet">
-    <!-- jquery -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-          //Código jquery para realizar alguna acción
-        });
-    </script>
-  </head>
-  <!-- FIN del HEAD del documento HTML-->
-  <!-- Body del documento HTML -->
-  <body>
-    <!-- Se configura el menú superior-->
-  
-    </nav>
-    <!-- INICIO DEL CONTAINER DE LA WEB PRINCIPAL-->
-    <div class="container">
-        <div class="starter-template">
-
-
-            <h1>PARQUE DEL CAFE</h1>
-
-          <div class="media">
-            <a class="pull-left" href="#">
-              <%= image_tag "parquecafe.jpg", :alt => "parquecafe", :title => "parquecafe"%>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">PARQUE DEL CAFE</h4>
-              <p> El Parque Nacional del Café, fue fundado por la Federación Nacional de Cafeteros de Colombia y el Comité Departamental de Cafeteros del Quindío, pertenece a la Fundación Parque de la Cultura Cafetera y es una entidad sin ánimo de lucro destinada a la preservación del patrimonio cultural e histórico del café en Colombia, a la promoción de actividades culturalesQU, recreativas, ecológicas y al impulso del eco-turismo en la región.
-
-                Ubicado en la zona central cafetera de Colombia, en el centro occidente del país, con una temperatura promedio de 21º y más de 25 atracciones tanto mecánicas como culturales, El Parque Nacional del Café es un recorrido por la cultura y las costumbres de una tradición que se extiende sobre el territorio del departamento del Quindío; marco de un destino turístico que ofrece a los visitantes un espacio de sano esparcimiento. 
-                Por esta razon este lugar es uno de nuestros 10 Mejores Destínos Turísticos del Eje Cafetero </p>
-            </div>
-          </div>
-
-
-          <h1>PARQUE NATURAL LOS NEVADOS</h1>
-
-          <div class="media">
-            <a class="pull-left" href="#">
-              <%= image_tag "nevado.jpg", :alt => "parquecafe", :title => "parquecafe"%>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">PARQUE NATURAL LOS NEVADOS</h4>
-              <p> El Parque Nacional Natural Los Nevados se encuentra ubicado en la Cordillera Central en la Región Andina de los Andes en Colombia.
-
-                El parque comprende los pisos térmicos correspondientes a los de frío, páramo, superpáramo y nieves, por lo cual sus ecosistemas principales son los bosques andinos, páramos y glaciar. Incluye además las cuencas hidrográficas de algunos ríos.
-                </p>
-            </div>
-          </div>
-
-          <h1>TERMALES DE SANTA ROSA</h1>
-
-          <div class="media">
-            <a class="pull-left" href="#">
-              <%= image_tag "termales.jpg", :alt => "parquecafe", :title => "parquecafe"%>
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading">TERMALES DE SANTA ROSA</h4>
-              <p> Uno de los principales referentes de Risaralda son las aguas termales de Santa Rosa de Cabal. El agua medicinal que brota de la tierra y se funde con la pura y fresca que baja de las montañas, a más de 100 metros de altura, y se ramifica en pequeñas cascadas y duchas naturales, ofrecen un espectáculo sin precedentes.
-
-              Está ubicado a 17,8 kilómetros de Santa Rosa de Cabal, Risaralda, Colombia, de los cuales 12.8 km son de carretera rural no pavimentada de buenas especificaciones para el acceso de vehículos familiares y de grupos.
-                </p>
-            </div>
-          </div>
-
-<head>
-  <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="pingback" href="" />
-<meta name="robots" content="noodp"/>
-<meta property="og:locale" content="es_ES" />
-<meta property="og:type" content="article" />
-<meta property="article:section" content="Blog" />
-<meta property="article:published_time" content="2014-04-08T18:14:27-05:00" />
-<meta property="article:modified_time" content="2016-12-21T12:13:20-05:00" />
-<meta property="og:updated_time" content="2016-12-21T12:13:20-05:00" />
-<meta property="fb:app_id" content="392849597719636" />
-<meta property="og:image:width" content="700" />
-<meta property="og:image:height" content="403" />
-
-</style>
-
-<meta name="generator" content="Powered by Slider Revolution 5.2.5.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
-</head>
-<body id="home" class="post-template-default single single-post postid-616 single-format-standard  nicescroll">
-     
-        <div class="col-md-6">
-                      ©2017. Diseñado por oscar rodriguez- david lopez                 </div>
-        
-</div> <!-- body-wrapper -->
-        <script type="text/javascript">
-        // <![CDATA[
-        var disqus_shortname = 'fincasejecafetero';
-        (function () {
-            var nodes = document.getElementsByTagName('span');
-            for (var i = 0, url; i < nodes.length; i++) {
-                if (nodes[i].className.indexOf('dsq-postid') != -1 && nodes[i].parentNode.tagName == 'A') {
-                    nodes[i].parentNode.setAttribute('data-disqus-identifier', nodes[i].getAttribute('data-dsqidentifier'));
-                    url = nodes[i].parentNode.href.split('#', 1);
-                    if (url.length == 1) { url = url[0]; }
-                    else { url = url[1]; }
-                    nodes[i].parentNode.href = url + '#disqus_thread';
-                }
-            }
-            var s = document.createElement('script');
-            s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-        // ]]>
-        </script>
-  <script type="text/javascript">
-  window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-  d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-  _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-  $.src='//v2.zopim.com/?32kpMNYwcEDP6OFTozehuMmzLMDQ947P';z.t=+new Date;$.
-  type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-  </script><script>$zopim( function() {
-})</script><!--End of Zendesk Chat Script--><style scoped>.kode-navigation{font-family:Arial, Helvetica, sans-serif}
-.kode-caption-title, .kode-caption-text, h1, h2, h3, h4, h5, h6{font-family:Arial, Helvetica, sans-serif}
-body{font-family:Arial, Helvetica, sans-serif}
-body{font-size:14px}
-h1{font-size:30px}
-h2{font-size:25px}
-h3{font-size:20px}
-h4{font-size:18px}
-h5{font-size:16px}
-h6{font-size:15px}
-.logo{margin-bottom: 0px;  }
-.logo{margin-top: 0px;  }
-.thcolor,.thcolorhover:hover,
-        .kode-services article:hover h2 a,
-        .kd-blog-list article:hover h2 a,
-        .widget-blogpost ul li:hover h6 a,
-        .kode-team article:hover h5 a,
-        .kd-404 h1,
-        .property-list .text h2{color: #92cd00 !important;  }
-
-        .nav.navbar-nav .menu .children li:hover:before, .kode-navigation-wrapper .sub-menu li:hover:before, .tagcloud a:hover, .widget_nav_menu ul li a:hover, .widget_archive ul li:hover, .widget_categories ul li:hover, .widget_pages ul li a:hover, .widget_meta ul li:hover, .widget_recent_entries ul li a:hover, .widget_calendar caption, .form-submit .submit,.thbg-color,.thbg-colorhover:hover,.kd-topbar,#lang_sel ul li ul,.nav.navbar-nav .menu ul > li > a:before, .navbar-nav > li > a:before,.sub-dropdown li:before,.kd-usernetwork:before,
-.nav-tabs > li.active > a,.nav-tabs > li > a:hover, .nav-tabs > li.active > a:focus,.input-group-addon,.kode-team figure:before,.kd-tag ul li a:hover,
-.kode-gallery ul li figure figcaption:before,.pagination a:before,.pagination a:after,/*Widget*/.widget_categories ul li:hover,.widget_archive ul li:hover,
-.widget_search form input[type="submit"],.widget_tag a:hover,.kode-widget h3:before,.kode-widget h2:before,.kd-widget-title h2:before,.nav.navbar-nav .menu .children li:before,.kode-comments-area ul li .text a.comment-reply-link:hover,
-.property-list .text a:hover,
-.f-property .thumb{background-color: #92cd00 !important;  }
-.th-bordercolor,.th-bordercolorhover:hover,blockquote,.kd-user-tag,.sub-dropdown,.property-list .text a:hover{border-color: #92cd00 !important;  }
-.kode-navigation-wrapper .children, .kode-navigation-wrapper .sub-menu{border-top-color: #92cd00 !important;  }
-</style>
-<script type='text/javascript'>
-/* <![CDATA[ */
-var _wpcf7 = {"recaptcha":{"messages":{"empty":"Por favor, prueba que no eres un robot."}}};
-/* ]]> */
-</script>
-
-
-</body>
-</html>
 <% else %>
-  <ul class="nav nav-tabs">
+
+<ul class="nav nav-tabs">
   
   <li><a href="#">INICIO</a></li>
   <li><a href="#">NOTICIAS</a></li>
   <li><a href="#">CONTACTO</a></li>
-  <li><%= link_to "INICIAR SESION", href= "/users/ver", :class => 'navbar-link'  %> </li>
+  <li><%= link_to "INICIAR SESION",  new_user_session_path , :class => 'navbar-link'  %> </li>
   
-  <li>  <%= link_to "CREAR CUENTA",  :class => 'navbar-link'  %>
-   </li>
-    <li>  <%= link_to "CERRAR SESION", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+  <li>  <%= link_to "CREAR CUENTA", new_user_registration_path ,   :class => 'navbar-link'  %>
    </li>
 </ul>
    
@@ -637,7 +257,12 @@ var _wpcf7 = {"recaptcha":{"messages":{"empty":"Por favor, prueba que no eres un
 
 </body>
 </html>
+
 <% end %>
- <li>  <%= link_to "CERRAR SESION", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-   </li>
+
+
+
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, id: "flash_#{name}" %>
 <% end %>
