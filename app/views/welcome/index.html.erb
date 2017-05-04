@@ -24,9 +24,9 @@
   <!--Signed in as <%= current_user.type %>. Not you?
   <%= link_to "Editar Perfil", edit_user_registration_path %>
   <%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %> 
-
+-->
   <% if current_user.type == "King" %>
-	  <%= link_to "Administradores", admins_path %> -->
+	  
 	  
    <h1>Bienvenido <%= current_user.try(:name)%> <%= current_user.try(:last_name)%></h1>
   <ul class="nav nav-tabs">
